@@ -1,7 +1,13 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 import 'world_time.dart';
 import 'loading.dart';
 import 'choose_location.dart';
+
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -23,7 +29,7 @@ class _HomeState extends State<Home> {
 
 
     //set background image
-    String bgImage= data['isDayTime'] ? 'day.jpg' : 'night.jpg';
+    String bgImage= data['isDayTime'] ? 'day2.jpg' : 'night.jpg';     //gives morning or night image according to the time of the place
     Color? bgcolor=data['isDayTime'] ? Colors.blue : Colors.indigo[800];
 
 
@@ -55,33 +61,36 @@ class _HomeState extends State<Home> {
                   },
                   icon: Icon(
                     Icons.edit_location,
-                    color: Colors.grey[300],
+                    color: Colors.red,
                   ),
                   label: Text(
                     'Edit location',
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2.0,
-                      color: Colors.grey[300],
+                      color: Colors.white,
                     ),
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 50.0),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+
                     Text(
                       data['location'],
                       style: TextStyle(
-                        fontSize: 30.0,
+                        fontSize: 50.0,
                         letterSpacing: 2.0,
                         color: Colors.white,
+                        fontStyle: FontStyle.italic,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 30.0),
                 Text(
                   data['time'],
                   style: TextStyle(
